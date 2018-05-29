@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Layout = "~/Views/Shared/Profile_Layout.cshtml";
+}
+@model Dostigator.Models.User
+
+
+<div class="container">
+	<section>
+		<div class="row-center">
+			<h2>Мои цели</h2>
+		</div>
+	</section>
+	<section>
+		<div class="row">
+			<div class="col l12 m12 s12">
+				<div class="row">
+					@foreach (var x in ViewBag.Aims)
+					{
+						<div class="col s12 m6 l4">
+							<div class="card medium">
+								<div class="card-image">
+									<a href="~/Profile/Aims/Details/@x.Id"><img src="@x.ImagePath" /></a>
+									<span class="card-title">@x.Name<br> <span class="new badge" data-badge-caption="@x.Group"></span> </span>
+								</div>
+								<div class="card-content">
+									<p>@Html.Raw(@x.PreviewText)</p>
+									<p>@x.StartDate - @x.FinishDate</p>
+									<a class="waves-effect waves-light btn-small red lighten-1" href="~/Profile/Aims/Delete/@x.Id">Удалить</a>
+									<a class="waves-effect waves-light btn-small" href="~/Profile/Aims/Edit/@x.Id">Изменить</a>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>			
+		</div>       
+	</section>
+    <section>
+        <div class="row-center">
+            <h2>Дневник целей</h2>
+        </div>
+    </section>
+    <section>
+        <div class="row">            
+            <ul class="timeline">
+                @foreach (var item in ViewBag.Line)
+                {
+                    <li>
+                        <div class="direction-@item.Position">
+                            <div class="flag-wrapper">
+                                <span class="flag">@item.Aim.Name</span>
+                                <span class="time-wrapper"><span class="time">@item.Date</span></span>								
+                            </div>
+                            <div class="desc">@Html.Raw(item.Text)</div>
+                            <a href="~/Profile/TimeLines/Edit/@item.Id">Изменить</a>
+                            <a href="~/Profile/TimeLines/Delete/@item.Id">Удалить</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+</div>
+

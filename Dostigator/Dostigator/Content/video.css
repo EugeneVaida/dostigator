@@ -1,0 +1,136 @@
+﻿.fullscreen-bg {
+    overflow: hidden;
+    z-index: -100;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-top: 45%;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+    .overlay h1 {
+        text-align: center;
+        color: #fff;
+        margin-top: 17%;
+    }
+
+    .overlay h2 {
+        text-align: center;
+        color: #fff;
+    }
+
+@media (max-width: 960px) {
+    .overlay h1 {
+        text-align: center;
+        color: #fff;
+        margin-top: 15%;
+        font-size: 48px;
+    }
+
+    .overlay i {
+        font-size: 50px;
+    }
+
+    .overlay h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 26px;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .fullscreen-bg {
+        background: url('./video/Pink_Mood_NYC.jpg') center center / cover no-repeat;
+    }
+
+    .fullscreen-bg__video {
+        display: none;
+    }
+
+    .overlay h1 {
+        text-align: center;
+        color: #fff;
+        margin-top: 10%;
+        font-size: 36px;
+    }
+
+    .overlay i {
+        font-size: 50px;
+    }
+
+    .overlay h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 28px;
+    }
+}
+
+
+@media (max-width: 562px) {
+    .fullscreen-bg {
+        background: url('./video/Pink_Mood_NYC.jpg') center center / cover no-repeat;
+    }
+
+    .fullscreen-bg__video {
+        display: none;
+    }
+
+    .overlay h1 {
+        text-align: center;
+        color: #fff;
+        margin-top: 5%;
+        font-size: 28px;
+    }
+
+    .overlay i {
+        font-size: 50px;
+    }
+
+    .overlay h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        margin-top: 0px;
+    }
+
+    h1.header {        
+        line-height: 40px;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }

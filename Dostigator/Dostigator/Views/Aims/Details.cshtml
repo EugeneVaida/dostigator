@@ -1,0 +1,98 @@
+﻿@model Dostigator.Models.Aim
+@{
+	ViewBag.Title = "AimDetails";
+	Layout = "~/Views/Shared/Profile_Layout.cshtml";
+}
+<script>
+	window.onload = function () {
+			var start = "@Model.StartDate";
+			var finish = "@Model.FinishDate";
+			console.log(start);
+			console.log(finish);
+			var arrayOfSD = start.split('.');
+			var arrayOfFD = finish.split('.');
+			var start = new Date(arrayOfSD[2], arrayOfSD[1] - 1, arrayOfSD[0]); 
+			var finish = new Date(arrayOfFD[2], arrayOfFD[1] - 1, arrayOfFD[0]);
+			var today = new Date();
+			console.log(start);
+			console.log(finish);
+            var result = Math.round(((today - start) / (finish - start)) * 100);
+
+            if (result < 0) {
+                var x = document.getElementById("progress-bar");
+                x.style.width = 100 + "%";
+                var y = document.getElementById("percent");
+                y.innerText = "completed!";
+            }
+
+			var x = document.getElementById("progress-bar");
+			x.style.width = result + "%";
+			var y = document.getElementById("percent");
+			y.innerText = result + "%"
+        }
+</script>
+
+
+
+<div class="container">
+	<h2>Просмотр @Html.DisplayFor(model => model.Name)</h2>
+	<div class="row">
+		<div class="container col s12 ">
+			<div class="row">
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title activator grey-text text-darken-4">О цели<i class="material-icons right">more_vert</i></span>
+						<div class="container">
+							<div class="row">
+								<div class="col s12 m12 l12">
+									<div class="card">
+										<div class="card-image">
+											<img src="@Model.ImagePath" />
+											<span class="card-title">@Html.DisplayFor(model => model.Name)</span>
+										</div>
+									</div>
+								</div>
+								<div class="col s11">
+									<div class="progress">
+										<div id="progress-bar" class="determinate"></div>
+									</div>
+								</div>
+								<div class="col s1">
+									<p id="percent">70%</p>
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<h5>Описание</h5>
+							@Html.Raw(Model.PreviewText)
+						</div>
+					</div>
+					<div class="card-reveal">
+						<span class="card-title grey-text text-darken-4">О цели<i class="material-icons right">close</i></span>
+						<span class="new badge" data-badge-caption="@Model.Group"></span>
+						@Html.Raw(Model.Text)
+					</div>
+					<footer class="page-footer grey darken-2">
+						<div class="container">
+							<div class="row">
+								<div class="col s12 m4">
+									<p>@Html.DisplayFor(model => model.FinishDate)</p>
+								</div>
+								<div class="col s6 m4">
+									<a class="waves-effect waves-light btn-small" href="~/Profile/Aims/Delete/@Model.Id">Удалить</a>
+								</div>
+								<div class="col s6 m4">
+									<a class="waves-effect waves-light btn-small" href="~/Profile/Aims/Edit/@Model.Id">Редактировать</a>
+								</div>
+                                <div class="col s6 m4">
+                                    <a class="waves-effect waves-light btn-small" href="~/Profile/TimeLines/Create/@Model.Id">Создать отчет</a>
+                                </div>
+							</div>
+
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
