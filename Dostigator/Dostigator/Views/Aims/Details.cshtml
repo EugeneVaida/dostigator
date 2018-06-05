@@ -18,17 +18,19 @@
 			console.log(finish);
             var result = Math.round(((today - start) / (finish - start)) * 100);
 
-            if (result < 0) {
-                var x = document.getElementById("progress-bar");
-                x.style.width = 100 + "%";
-                var y = document.getElementById("percent");
-                y.innerText = "completed!";
-            }
-
-			var x = document.getElementById("progress-bar");
-			x.style.width = result + "%";
-			var y = document.getElementById("percent");
-			y.innerText = result + "%"
+			if (result < 0) {
+				var x = document.getElementById("progress-bar");
+				x.style.width = 100 + "%";
+				var y = document.getElementById("percent");
+				y.innerText = "completed!";
+			}
+			else
+			{
+				var x = document.getElementById("progress-bar");
+				x.style.width = result + "%";
+				var y = document.getElementById("percent");
+				y.innerText = result + "%"
+			}			
         }
 </script>
 

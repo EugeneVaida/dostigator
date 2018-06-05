@@ -179,6 +179,14 @@ namespace Dostigator.Controllers
             {
                 return HttpNotFound();
             }
+
+            User user = null;
+            using (UserContext db = new UserContext())
+            {
+                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
+            }
+            ViewBag.User = user;
+
             return View(timeLine);
         }
 
@@ -190,6 +198,13 @@ namespace Dostigator.Controllers
             TimeLine timeLine = db.TimeLines.Find(id);
             db.TimeLines.Remove(timeLine);
             db.SaveChanges();
+            User user = null;
+            using (UserContext db = new UserContext())
+            {
+                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
+            }
+            ViewBag.User = user;
+
             return RedirectToAction("Index");
         }
 
