@@ -12,7 +12,7 @@ namespace Dostigator.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
+      
         [AllowHtml]
         public string Text { get; set; }    
         

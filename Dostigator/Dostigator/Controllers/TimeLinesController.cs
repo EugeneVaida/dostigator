@@ -19,11 +19,7 @@ namespace Dostigator.Controllers
         // GET: TimeLines
         public ActionResult Index()
         {
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+            User user = GetUser();
             ViewBag.User = user;
 
             var timeLines = db.TimeLines.Include(y => y.Aim).Where(y => y.Aim.User.Id == user.Id);
@@ -64,24 +60,19 @@ namespace Dostigator.Controllers
             {
                 return HttpNotFound();
             }
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+            User user = GetUser();
             ViewBag.User = user;
+
             return View(timeLine);
         }
 
         // GET: TimeLines/Create/5
         public ActionResult Create(int? id)
         {
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+            User user = GetUser();
             ViewBag.User = user;
+
+            
             ViewBag.AimId = id;
             return View();
         }
@@ -119,11 +110,7 @@ namespace Dostigator.Controllers
 
                 return RedirectToAction("Index");
             }
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+            User user = GetUser();
             ViewBag.User = user;
 
             SelectList aims = new SelectList(db.Aims, "AimId", "Id");
@@ -137,6 +124,9 @@ namespace Dostigator.Controllers
         // GET: TimeLines/Edit/5
         public ActionResult Edit(int? id)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -146,7 +136,9 @@ namespace Dostigator.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AimId = new SelectList(db.Aims, "Id", "Name", timeLine.AimId);
+            ViewBag.Position = timeLine.Position;
+
+            ViewBag.AimId = timeLine.AimId;
             return View(timeLine);
         }
 
@@ -155,15 +147,24 @@ namespace Dostigator.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Text,PreviewText,Date,AimId")] TimeLine timeLine)
+        public ActionResult Edit([Bind(Include = "Id,Name,Text,Position,Date,AimId")] TimeLine timeLine)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             if (ModelState.IsValid)
             {
                 db.Entry(timeLine).State = EntityState.Modified;
                 db.SaveChanges();
+
+                TempData["Message"] = "Edit";
                 return RedirectToAction("Index");
             }
             ViewBag.AimId = new SelectList(db.Aims, "Id", "Name", timeLine.AimId);
+
+            
+
+
             return View(timeLine);
         }
 
@@ -180,11 +181,7 @@ namespace Dostigator.Controllers
                 return HttpNotFound();
             }
 
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+            User user = GetUser();
             ViewBag.User = user;
 
             return View(timeLine);
@@ -198,11 +195,10 @@ namespace Dostigator.Controllers
             TimeLine timeLine = db.TimeLines.Find(id);
             db.TimeLines.Remove(timeLine);
             db.SaveChanges();
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+
+            TempData["Message"] = "Delete";
+
+            User user = GetUser();
             ViewBag.User = user;
 
             return RedirectToAction("Index");
@@ -216,5 +212,16 @@ namespace Dostigator.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public User GetUser()
+        {
+            User user = null;
+            using (UserContext db = new UserContext())
+            {
+                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
+            }
+            return user;
+        }
+
     }
 }

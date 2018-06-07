@@ -53,7 +53,7 @@
 							<div class="file-field input-field">
 								@Html.LabelFor(model => model.ImagePath, new { @class = "" })
 								@Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "file-path validate" } })
-                                <img src="@Url.Content(ViewBag.Image)" style="width: 50%; margin-left: 30px;" id="imagePreview" />
+                                <img src="@Url.Content(@Model.ImagePath)" style="width: 50%; margin-left: 30px;" id="imagePreview" />
 								<div class="btn">
 									<span>File</span>
 									<input type="file" name="Img" accept="image/jpeg, image/png" onchange="ShowImagePreview(this,document.getElementById('imagePreview'))">
