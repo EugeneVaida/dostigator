@@ -23,11 +23,7 @@ namespace Dostigator.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                User user = null;
-                using (UserContext db = new UserContext())
-                {
-                    user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-                }
+                User user = GetUser();
 
                 IEnumerable<Aim> aim = null;
                 using (UserContext db = new UserContext())
@@ -59,13 +55,10 @@ namespace Dostigator.Controllers
             {
                 return HttpNotFound();
             }
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
 
+            User user = GetUser();
             ViewBag.User = user;
+
             return View(aim);
         }
 
@@ -74,11 +67,8 @@ namespace Dostigator.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User user = null;
-                using (UserContext db = new UserContext())
-                {
-                    user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-                }
+                User user = GetUser();
+                
                 Aim emp = new Aim();
                 ViewBag.User = user;
                 ViewBag.UserId = user.Id;
@@ -119,12 +109,9 @@ namespace Dostigator.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Profile");
             }
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+            User user = GetUser();
             ViewBag.User = user;
+
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email", aim.UserId);
             return View(aim);
         }
@@ -132,12 +119,8 @@ namespace Dostigator.Controllers
 
         public ActionResult Edit(int? id)
         {
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
-
+            User user = GetUser();
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -207,11 +190,7 @@ namespace Dostigator.Controllers
             {
                 return HttpNotFound();
             }
-            User user = null;
-            using (UserContext db = new UserContext())
-            {
-                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
-            }
+            User user = GetUser();
             ViewBag.User = user;
             return View(aim);
         }
@@ -234,6 +213,42 @@ namespace Dostigator.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+
+        //Search Method
+        
+        public ActionResult TagSearch(string id)
+        {
+            IEnumerable<Aim> aim = null;
+            using (UserContext db = new UserContext())
+            {
+                aim = db.Aims.ToList().Where(z => z.Group == id);
+            }
+
+            if (aim == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Aims = aim;
+            ViewBag.Tag = id;
+
+            User user = GetUser();
+            ViewBag.User = user;
+
+            return View( );
+        }
+
+        public User GetUser()
+        {
+            User user = null;
+            using (UserContext db = new UserContext())
+            {
+                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
+            }
+            return user;
         }
     }
 }
