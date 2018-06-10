@@ -24,7 +24,8 @@ namespace Dostigator
                       "~/Scripts/materialize.js",
                       "~/Scripts/materialize.min.js,",
                       "~/Scripts/ckeditor.js",
-                      "~/Scripts/Scripts.js"));
+                      "~/Scripts/Scripts.js",
+                      "~/Scripts/typed.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                      "~/Content/timeline.css",

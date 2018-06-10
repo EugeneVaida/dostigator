@@ -92,3 +92,96 @@ h1.header {
 .card.small .card-image + .card-content, .card.medium .card-image + .card-content, .card.large .card-image + .card-content {
     max-height: 60%;
 }
+
+.typed-cursor.typed-cursor--blink {
+    animation: typedjsBlink 0.7s infinite;
+    animation-name: typedjsBlink;
+    animation-duration: 0.7s;
+    animation-timing-function: initial;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: initial;
+    animation-fill-mode: initial;
+    animation-play-state: initial;
+    -webkit-animation: typedjsBlink 0.7s infinite;
+}
+
+@keyframes typedjsBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.center-block {
+    display: flex !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.brand-h2 {
+    margin: 0;
+}
+
+.brand-text {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+.logo {
+    max-width: 80px;
+}
+
+
+
+
+.responsive-img {
+    max-width: 80% !important;
+}
+
+.logo-subhead {
+    color: white;
+}
+
+.heading {
+    margin-bottom: 100px;
+}
+
+
+@media (max-width: 1050px) {
+    .header {
+        margin-top: 30px !important;
+    }
+
+    .logo {
+        max-width: 80px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 960px) {
+    .header {
+        margin-top: 20px !important;
+    }
+
+    .logo {
+        max-width: 60px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 760px) {
+    .header {
+        margin-top: 0 !important;
+    }
+
+    .logo {
+        max-width: 40px;
+        margin-bottom: 5px;
+    }
+
+    .heading {
+        font-size: 1.5rem !important;
+    }
+}
