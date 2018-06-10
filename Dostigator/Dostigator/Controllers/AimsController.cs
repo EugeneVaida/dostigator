@@ -241,6 +241,19 @@ namespace Dostigator.Controllers
             return View( );
         }
 
+        public ActionResult Tag()
+        {
+            IEnumerable<Aim> aim = null;
+            using (UserContext db = new UserContext())
+            {
+                var x = db.Aims.GroupBy(y => y.Group).Select(y => y.Key);
+            }
+
+            ViewBag.Aims = aim;
+
+            return View();
+        }
+
         public User GetUser()
         {
             User user = null;

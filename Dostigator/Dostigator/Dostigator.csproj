@@ -393,6 +393,7 @@
     <Content Include="Views\TimeLines\Index.cshtml" />
     <Content Include="Views\TimeLines\Create.cshtml" />
     <Content Include="Views\Aims\TagSearch.cshtml" />
+    <Content Include="Views\Aims\Tag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
