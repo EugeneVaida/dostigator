@@ -394,6 +394,8 @@
     <Content Include="Views\TimeLines\Create.cshtml" />
     <Content Include="Views\Aims\TagSearch.cshtml" />
     <Content Include="Views\Aims\Tag.cshtml" />
+    <Content Include="Views\Aims\All.cshtml" />
+    <Content Include="Views\Profile\Room.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

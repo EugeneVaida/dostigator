@@ -39,6 +39,7 @@
 <div class="container">
 	<h2>Просмотр @Html.DisplayFor(model => model.Name)</h2>
 	<div class="row">
+        <!-- Карточка простмотра цели -->
 		<div class="container col s12 ">
 			<div class="row">
 				<div class="card">
@@ -50,7 +51,8 @@
 									<div class="card">
 										<div class="card-image">
 											<img src="@Model.ImagePath" />
-											<span class="card-title">@Html.DisplayFor(model => model.Name)</span>
+											<span class="card-title">@Html.DisplayFor(model => model.Name) <span class="new badge" data-badge-caption="@Model.Group"></span></span>
+
 										</div>
 									</div>
 								</div>
@@ -66,35 +68,63 @@
 						</div>
 						<div class="container">
 							<h5>Описание</h5>
+                            
+                                <div class="chip">
+                                    @Html.DisplayFor(model => model.FinishDate)
+                                </div>                              
+                                    
+                               
+                                                      
+                            
 							@Html.Raw(Model.PreviewText)
 						</div>
 					</div>
 					<div class="card-reveal">
 						<span class="card-title grey-text text-darken-4">О цели<i class="material-icons right">close</i></span>
-						<span class="new badge" data-badge-caption="@Model.Group"></span>
-						@Html.Raw(Model.Text)
+						
+                        <div class="container">
+                            <h2>Описание цели</h2>
+                            @Html.Raw(Model.Text)
+                        </div>						
 					</div>
-					<footer class="page-footer grey darken-2">
-						<div class="container">
-							<div class="row">
-								<div class="col s12 m4">
-									<p>@Html.DisplayFor(model => model.FinishDate)</p>
-								</div>
-								<div class="col s6 m4">
-									<a class="waves-effect waves-light btn-small" href="~/Profile/Aims/Delete/@Model.Id">Удалить</a>
-								</div>
-								<div class="col s6 m4">
-									<a class="waves-effect waves-light btn-small" href="~/Profile/Aims/Edit/@Model.Id">Редактировать</a>
-								</div>
-                                <div class="col s6 m4">
-                                    <a class="waves-effect waves-light btn-small" href="~/Profile/TimeLines/Create/@Model.Id">Создать отчет</a>
-                                </div>
-							</div>
-
-						</div>
-					</footer>
+                    @if (ViewBag.User.Id == Model.UserId)
+                    {
+					    <footer class="page-footer grey darken-2">
+						    <div class="container">
+							    <div class="row">
+                                        <div class="card-action">
+                                            <a href="~/Profile/Aims/Delete/@Model.Id">Удалить</a>
+                                            <a href="~/Profile/Aims/Edit/@Model.Id">Редактировать</a>
+                                            <a href="~/Profile/TimeLines/Create/@Model.Id">Создать отчет</a>
+                                        </div> 					
+							    </div>
+						    </div>
+					    </footer>
+                    }
 				</div>
 			</div>
 		</div>
+        <!-- Карточка простмотра цели -->
+
+        <!-- ТаймЛайн -->
+        <div class="container col s12">
+            <h2>Шаги цели</h2>
+            <ul class="timeline">
+                @foreach (var item in ViewBag.Lines)
+                {
+                    <li>
+                        <div class="direction-@item.Position)">
+                            <div class="flag-wrapper">
+                                <span class="flag">@item.Aim.Name</span>
+                                <span class="time-wrapper"><span class="time">@item.Date</span></span>
+                            </div>
+                            <div class="desc">@Html.Raw(item.Text)</div>
+                        </div>
+                    </li>
+                }
+
+            </ul>
+        </div>
+        <!-- ТаймЛайн -->
 	</div>
 </div>

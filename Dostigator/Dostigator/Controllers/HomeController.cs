@@ -22,7 +22,7 @@ namespace Dostigator.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public ActionResult About()
+        public ActionResult Admin()
         {
             ViewBag.Message = "Your application description page.";
 

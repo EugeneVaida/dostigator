@@ -88,3 +88,7 @@ h1.header {
 .card .card-image img {
     -webkit-filter: brightness(65%);
 }
+
+.card.small .card-image + .card-content, .card.medium .card-image + .card-content, .card.large .card-image + .card-content {
+    max-height: 60%;
+}

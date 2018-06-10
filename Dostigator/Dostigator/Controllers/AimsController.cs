@@ -11,13 +11,14 @@ using System.Text.RegularExpressions;
 using System.Data.Entity.Migrations;
 
 namespace Dostigator.Controllers
-{
+{    
     public class AimsController : Controller
     {
         private UserContext db = new UserContext();
         DateTime thisDay = DateTime.Today;
 
         // GET: Profile
+        [Authorize(Roles = "User")]
         public ActionResult Index()
         {
 
@@ -28,7 +29,7 @@ namespace Dostigator.Controllers
                 IEnumerable<Aim> aim = null;
                 using (UserContext db = new UserContext())
                 {
-                    aim = db.Aims.Include(y => y.User).ToList().Where(z => z.UserId == user.Id);
+                    aim = db.Aims.Include(y => y.User).Where(x => x.UserId == user.Id).ToList();
                 }
 
                 ViewBag.Aims = aim;
@@ -40,10 +41,36 @@ namespace Dostigator.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-        }       
+        }
+
+        [Authorize(Roles = "User")]
+        public ActionResult All()
+        {
+
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = GetUser();
+
+                IEnumerable<Aim> aim = null;
+                using (UserContext db = new UserContext())
+                {
+                    aim = db.Aims.Include(y => y.User).ToList();
+                }
+
+                ViewBag.Aims = aim;
+                ViewBag.User = user;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+        }
 
 
         // GET: Aims/Details/5
+        [Authorize(Roles = "User")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -57,12 +84,19 @@ namespace Dostigator.Controllers
             }
 
             User user = GetUser();
+
+            IEnumerable<TimeLine> timeLines;
+            timeLines = db.TimeLines.Include(y => y.Aim).Where(y =>  y.AimId == aim.Id );
+
+            ViewBag.Panel = "";
             ViewBag.User = user;
+            ViewBag.Lines = timeLines;
 
             return View(aim);
         }
 
 
+        [Authorize(Roles = "User")]
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated)
@@ -81,7 +115,7 @@ namespace Dostigator.Controllers
 
         }
 
-
+        [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,PreviewText,Text,FinishDate,Group,UserId")] Aim aim, HttpPostedFileBase Img)
@@ -116,7 +150,7 @@ namespace Dostigator.Controllers
             return View(aim);
         }
 
-
+        [Authorize(Roles = "User")]
         public ActionResult Edit(int? id)
         {
             User user = GetUser();
@@ -145,7 +179,7 @@ namespace Dostigator.Controllers
             return View(aim);
         }
 
-
+        [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,PreviewText,Text,FinishDate,Group,UserId,StartDate,ImagePath")] Aim aim, HttpPostedFileBase Img)
@@ -178,7 +212,7 @@ namespace Dostigator.Controllers
             return View(aim);
         }
 
-
+        [Authorize(Roles = "User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -195,7 +229,7 @@ namespace Dostigator.Controllers
             return View(aim);
         }
 
-
+        [Authorize(Roles = "User")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -218,7 +252,7 @@ namespace Dostigator.Controllers
 
 
         //Search Method
-        
+        [Authorize(Roles = "User")]
         public ActionResult TagSearch(string id)
         {
             IEnumerable<Aim> aim = null;
@@ -241,19 +275,24 @@ namespace Dostigator.Controllers
             return View( );
         }
 
+        [Authorize(Roles = "User")]
         public ActionResult Tag()
         {
-            IEnumerable<Aim> aim = null;
+            User user = GetUser();
+
+            List<string> x = null;
             using (UserContext db = new UserContext())
             {
-                var x = db.Aims.GroupBy(y => y.Group).Select(y => y.Key);
+                x = db.Aims.GroupBy(y => y.Group).Select(y => y.Key).ToList();
             }
 
-            ViewBag.Aims = aim;
+            ViewBag.Tags = x;            
+            ViewBag.User = user;
 
             return View();
         }
 
+        [Authorize(Roles = "User")]
         public User GetUser()
         {
             User user = null;
