@@ -30,7 +30,16 @@ namespace Dostigator.Controllers
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Name, true);
-                    return RedirectToAction("Index","Profile");
+
+                    if ( user.RoleId == 1)
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Profile");
+                    }
+                    
                 }
                 else
                 {

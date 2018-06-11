@@ -32,7 +32,7 @@
                                         <div class="input-field col s12">
                                             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "validate" } })
                                             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
-                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red-text" })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "red-text" })
                                         </div>
                                     </div>
                                 </form>

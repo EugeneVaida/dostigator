@@ -18,6 +18,8 @@ namespace Dostigator.Models
             Database.SetInitializer<UserContext>(null);
             base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<Dostigator.Models.Tutorial> Tutorials { get; set; }
     }
 }  
     
