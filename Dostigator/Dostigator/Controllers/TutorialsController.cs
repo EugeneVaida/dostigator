@@ -18,6 +18,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             return View(db.Tutorials.ToList());
         }
 
@@ -25,6 +28,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -41,6 +47,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             return View();
         }
 
@@ -52,6 +61,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,Name,Text,PreviewText,Date")] Tutorial tutorial)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             if (ModelState.IsValid)
             {
                 DateTime thisDay = DateTime.Today;
@@ -69,6 +81,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -89,6 +104,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,Text,PreviewText,Date")] Tutorial tutorial)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             if (ModelState.IsValid)
             {
                 db.Entry(tutorial).State = EntityState.Modified;
@@ -120,6 +138,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             Tutorial tutorial = db.Tutorials.Find(id);
             db.Tutorials.Remove(tutorial);
             db.SaveChanges();
@@ -133,6 +154,16 @@ namespace Dostigator.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public User GetUser()
+        {
+            User user = null;
+            using (UserContext db = new UserContext())
+            {
+                user = db.Users.Where(x => x.Email.Contains(User.Identity.Name)).FirstOrDefault();
+            }
+            return user;
         }
     }
 }

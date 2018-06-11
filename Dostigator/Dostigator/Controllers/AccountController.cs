@@ -33,7 +33,7 @@ namespace Dostigator.Controllers
 
                     if ( user.RoleId == 1)
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Tutorials");
                     }
                     else
                     {

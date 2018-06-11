@@ -219,7 +219,7 @@ namespace Dostigator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Aim aim = db.Aims.Find(id);
+            Aim aim = db.Aims.Where(x => x.Id == id).FirstOrDefault();
             if (aim == null)
             {
                 return HttpNotFound();
