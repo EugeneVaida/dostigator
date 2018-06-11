@@ -194,6 +194,7 @@
     <Content Include="img\background1.jpg" />
     <Content Include="img\background2.jpg" />
     <Content Include="img\background3.jpg" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\ckeditor.js" />
     <Content Include="Scripts\init.js" />

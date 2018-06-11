@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Поиск";
+}
+
+@{
+    Layout = "~/Views/Shared/Profile_Layout.cshtml";
+}
+
+@model Dostigator.Models.Aim
+
+<div class="container">
+    <section>
+        <div class="row-center">
+            <h2>Результаты по тегу <b>@ViewBag.Tag</b></h2>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    @foreach (var x in ViewBag.Aims)
+                    {
+                        <div class="col s12 m6 l4">
+                            <div class="card medium">
+                                <div class="card-image">
+                                    <a href="~/Profile/Aims/Details/@x.Id"><img src="@x.ImagePath" /></a>
+                                    <span class="card-title">@x.Name<br><span class="new badge" data-badge-caption="@x.Group"></span> </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="grey-text text-lighten-1">@x.StartDate - @x.FinishDate</p>
+                                    <p>@Html.Raw(@x.PreviewText)</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,187 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+#content {
+    margin-top: 50px;
+    text-align: center;
+}
+
+section.timeline-outer {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1.header {
+    font-size: 50px;
+    line-height: 70px;
+}
+
+.container-form {
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.card.small .card-image, .card.medium .card-image, .card.large .card-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card .card-image img {
+    -webkit-filter: brightness(65%);
+}
+
+.card.small .card-image + .card-content, .card.medium .card-image + .card-content, .card.large .card-image + .card-content {
+    max-height: 60%;
+}
+
+.typed-cursor.typed-cursor--blink {
+    animation: typedjsBlink 0.7s infinite;
+    animation-name: typedjsBlink;
+    animation-duration: 0.7s;
+    animation-timing-function: initial;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: initial;
+    animation-fill-mode: initial;
+    animation-play-state: initial;
+    -webkit-animation: typedjsBlink 0.7s infinite;
+}
+
+@keyframes typedjsBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.center-block {
+    display: flex !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.brand-h2 {
+    margin: 0;
+}
+
+.brand-text {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+.logo {
+    max-width: 80px;
+}
+
+
+
+
+.responsive-img {
+    max-width: 80% !important;
+}
+
+.logo-subhead {
+    color: white;
+}
+
+.heading {
+    margin-bottom: 100px;
+}
+
+
+@media (max-width: 1050px) {
+    .header {
+        margin-top: 30px !important;
+    }
+
+    .logo {
+        max-width: 80px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 960px) {
+    .header {
+        margin-top: 20px !important;
+    }
+
+    .logo {
+        max-width: 60px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 760px) {
+    .header {
+        margin-top: 0 !important;
+    }
+
+    .logo {
+        max-width: 40px;
+        margin-bottom: 5px;
+    }
+
+    .heading {
+        font-size: 1.5rem !important;
+    }
+}

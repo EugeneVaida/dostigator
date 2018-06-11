@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Теги";
+    Layout = "~/Views/Shared/Profile_Layout.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    @foreach (var x in ViewBag.Tags)
+                    {
+                        <div class="col s12 m6 l4">
+                            <a style="color:white;" href="~/Profile/Aims/TagSearch/@x">
+                                <div class="card deep-purple darken-4 text-white">
+                                    <div class="card-content">
+                                        <p>@x</p>
+                                    </div>
+                                </div>
+                            </a>                            
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>
+
+
