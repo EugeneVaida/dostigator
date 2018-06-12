@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Материалы";
+}
+
+@{
+    Layout = "~/Views/Shared/Profile_Layout.cshtml";
+}
+@model Dostigator.Models.User
+
+
+<div class="container">
+    <section>
+        <div class="row-center">
+            <h2>Материалы</h2>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    @foreach (var x in ViewBag.Tutorials)
+                    {
+                        <div class="col s12 m6 l4">
+                            <a href="~/Tutorials/Details/@x.Id">
+                                <div class="card medium">
+                                    <h2>@x.Name</h2>
+                                    <div class="card-content">
+                                        <p class="grey-text text-lighten-1">@x.Date</p>
+                                        <p>@Html.Raw(@x.PreviewText)</p>
+                                    </div>
+                                </div>
+                            </a>                            
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

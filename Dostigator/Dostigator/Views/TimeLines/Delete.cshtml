@@ -5,17 +5,18 @@
     Layout = "~/Views/Shared/Profile_Layout.cshtml";
 }
 
-<h2>Удаление</h2>
+<div class="container">
+    <h3>Вы действительно хотите удалить @Html.DisplayFor(model => model.Name)</h3>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-<h3>Вы действительно хотите удалить @Html.DisplayFor(model => model.Name)</h3>
-<div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
 </div>
+

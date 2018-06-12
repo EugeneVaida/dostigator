@@ -222,3 +222,4 @@ D:\MyProjects\dostigator\Dostigator\Dostigator\obj\Debug\Dostigator.csproj.CoreC
 D:\MyProjects\dostigator\Dostigator\Dostigator\obj\Debug\Dostigator.csproj.CopyComplete
 D:\MyProjects\dostigator\Dostigator\Dostigator\obj\Debug\Dostigator.dll
 D:\MyProjects\dostigator\Dostigator\Dostigator\obj\Debug\Dostigator.pdb
+D:\MyProjects\dostigator\Dostigator\Dostigator\obj\Debug\Dostigator.csprojAssemblyReference.cache

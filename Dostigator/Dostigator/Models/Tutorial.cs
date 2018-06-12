@@ -13,15 +13,19 @@ namespace Dostigator.Models
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Название")]
         public string Name { get; set; }
         [Required]
         [AllowHtml]
+        [Display(Name = "Текст")]
         public string Text { get; set; }
 
         [Required]
         [AllowHtml]
+        [Display(Name = "Превью")]
         public string PreviewText { get; set; }
 
+        [Display(Name = "Дата")]
         public string Date { get; set; }
         
     }
