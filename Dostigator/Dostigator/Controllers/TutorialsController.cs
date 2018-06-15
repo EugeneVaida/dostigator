@@ -24,8 +24,7 @@ namespace Dostigator.Controllers
             return View(db.Tutorials.ToList());
         }
 
-        // GET: Tutorials/Details/5
-        [Authorize(Roles = "admin")]
+        // GET: Tutorials/Details/5        
         public ActionResult Details(int? id)
         {
             User user = GetUser();
@@ -83,6 +82,7 @@ namespace Dostigator.Controllers
         {
             User user = GetUser();
             ViewBag.User = user;
+            
 
             if (id == null)
             {
@@ -93,6 +93,8 @@ namespace Dostigator.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Date = tutorial.Date;
             return View(tutorial);
         }
 
@@ -120,6 +122,9 @@ namespace Dostigator.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
+            User user = GetUser();
+            ViewBag.User = user;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

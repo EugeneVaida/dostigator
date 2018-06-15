@@ -20,16 +20,16 @@
                 <div class="row">
                     @foreach (var x in ViewBag.Tutorials)
                     {
-                        <div class="col s12 m6 l4">
-                            <a href="~/Tutorials/Details/@x.Id">
-                                <div class="card medium">
-                                    <h2>@x.Name</h2>
-                                    <div class="card-content">
-                                        <p class="grey-text text-lighten-1">@x.Date</p>
-                                        <p>@Html.Raw(@x.PreviewText)</p>
+                        <div class="col s12 m6 l4">                            
+                                <div class="card medium" style="padding: 15px;">
+                                    <h4>@x.Name</h4>
+                                    <div class="card-content">                                                                                                                     
                                     </div>
-                                </div>
-                            </a>                            
+                                    <div class="card-action">
+                                        <a href="~/Tutorials/Details/@x.Id">Просмотр</a>
+                                        <p class="grey-text text-lighten-1">@x.Date</p> 
+                                    </div>
+                                </div>                                                       
                         </div>
                     }
                 </div>

@@ -17,6 +17,7 @@ namespace Dostigator.Controllers
 
 
         // GET: TimeLines
+        [Authorize(Roles = "User")]
         public ActionResult Index()
         {
             User user = GetUser();
@@ -49,6 +50,7 @@ namespace Dostigator.Controllers
         }
 
         // GET: TimeLines/Details/5
+        [Authorize(Roles = "User")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -67,6 +69,7 @@ namespace Dostigator.Controllers
         }
 
         // GET: TimeLines/Create/5
+        [Authorize(Roles = "User")]
         public ActionResult Create(int? id)
         {
             User user = GetUser();
@@ -82,6 +85,7 @@ namespace Dostigator.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public ActionResult Create([Bind(Include = "Id,Name,Text,AimId")] TimeLine timeLine)
         {
             timeLine.Date = thisDay.ToString("d");
@@ -122,6 +126,7 @@ namespace Dostigator.Controllers
         }
 
         // GET: TimeLines/Edit/5
+        [Authorize(Roles = "User")]
         public ActionResult Edit(int? id)
         {
             User user = GetUser();
@@ -147,6 +152,7 @@ namespace Dostigator.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public ActionResult Edit([Bind(Include = "Id,Name,Text,Position,Date,AimId")] TimeLine timeLine)
         {
             User user = GetUser();
@@ -169,6 +175,7 @@ namespace Dostigator.Controllers
         }
 
         // GET: TimeLines/Delete/5
+        [Authorize(Roles = "User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -190,6 +197,7 @@ namespace Dostigator.Controllers
         // POST: TimeLines/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public ActionResult DeleteConfirmed(int id)
         {
             TimeLine timeLine = db.TimeLines.Find(id);

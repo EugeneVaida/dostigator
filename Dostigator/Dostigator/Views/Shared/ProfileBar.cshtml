@@ -7,18 +7,19 @@
                 <div class="user-view">
                     <div class="background">
                         <img src="https://drscdn.500px.org/photo/177823087/w%3D440_h%3D440/v2?webp=true&v=7&sig=9f050ea7d86827347c212238c04f24d9ea34d94d335f7f33614c5b0e2a33b3b9">
-                    </div>
-                    <a href="#user"><img class="circle" src="https://drscdn.500px.org/photo/195143459/h%3D1065/v2?webp=true&sig=c9db37fe0017a0479f01bb2a010c88ef4748bcb3a9ef4c58494c20a3fd945fc6"></a>
-                    <a href="#name"><span class="white-text name">@ViewBag.User.Email</span></a>
-                    <a href="#email"><span class="white-text email">@ViewBag.User.Age</span></a>
+                    </div>                    
+                    <a href="#name"><span class="white-text name">Логин @ViewBag.User.Email</span></a>
+                    <a href="#email"><span class="white-text email">Возраст @ViewBag.User.Age</span></a>
                 </div>
             </li>
+            <li><a href="~/Profile" class="waves-effect">Профиль</a></li>
             <li><a href="~/Profile/Aims" class="waves-effect">Мои цели</a></li>
             <li><a href="~/Profile/TimeLines" class="waves-effect">Таймлайн</a></li>
-            <li><a href="#!" class="waves-effect">Вызовы</a></li>
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            <li><a href="~/Profile/Materials">Материалы</a></li>
+            <li><a href="~/Aims/All">Цели</a></li>
+            <li><a href="~/Profile/Aims/Tag">Теги</a></li>
+            <li><a href="~/Account/Logoff">Выйти</a></li>
+            
         </ul>
     </section>
 </div>

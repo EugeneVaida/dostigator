@@ -5,14 +5,15 @@
     Layout = "~/Views/Shared/Profile_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container white" style="padding:25px;">
     <div>
         <h2> @Html.DisplayFor(model => model.Name) </h2>
-        <p> @Html.DisplayFor(model => model.Date)</p>
-        <hr />
-        @Html.Raw(Model.Text)
-        
-    </div>
+        <div class="chip">
+            @Html.DisplayFor(model => model.Date)
+        </div>            
+        <br />
+            @Html.Raw(Model.Text)
+        </div>
 
 </div>
 
